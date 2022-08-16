@@ -18,7 +18,10 @@ try {
 
             case 'contact' :
                 if ( $url[1] === 'add' ) {
-                    echo 'add';
+                    $contactController->addNewContact();
+                    break;
+                } else if ( $url[1] === 'add-validation' ) {
+                    $contactController->addValidation();
                     break;
                 } else if ( $url[1] === 'edit' ) {
                     echo 'edit';

@@ -28,4 +28,21 @@ class ContactManager extends Database {
         }
     }
 
+    public function addContactDB( $firstName, $lastName, $location, $phone, $type, $avatar ) {
+        $req = $this->getDB()->prepare( 'INSERT INTO contacts( firstName, lastName, location, phone, type, photo ) VALUES( :firstName, :lastName, :location, :phone, :type, :photo )' );
+        $req->bindValue( ':firstName', $firstName, PDO::PARAM_STR );
+        $req->bindValue( ':lastName', $lastName, PDO::PARAM_STR );
+        $req->bindValue( ':location', $location, PDO::PARAM_STR );
+        $req->bindValue( ':phone', $phone, PDO::PARAM_STR );
+        $req->bindValue( ':type', $type, PDO::PARAM_STR );
+        $req->bindValue( ':photo', $avatar, PDO::PARAM_STR );
+        $res = $req->execute();
+        $req->closeCursor();
+
+        if ( $res > 0 ) {
+            $contact = new Contact( $this->getDB()->lastInsertId(), $firstName, $lastName, $location, $phone, $type, $avatar );
+            $this->addContact( $contact );
+        }
+    }
+
 }

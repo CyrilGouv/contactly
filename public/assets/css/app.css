@@ -60,6 +60,16 @@ h1 {
     max-width: 1490px;
 }
 
+.btn {
+    width: 100%;
+    color: var(--bgGray);
+    background-color: var(--violet);
+    border: none;
+    padding: 1rem 0;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 
 /* -------------------------------
     Navbar
@@ -265,6 +275,62 @@ h1 {
 }
 
 
+/* -------------------------------
+    Crud Contact
+---------------------------------*/
+.add__title {
+    display: flex;
+    align-items: center;
+}
+
+.add--project {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.725rem;
+    height: 2.725rem;
+    background-color: var(--violet);
+    text-decoration: none;
+    color: var(--bgGray);
+    border-radius: 50%;
+}
+
+.add__title h1 {
+    margin-left: 1.5rem;
+}
+
+.add__contact {
+    margin-top: 2.5rem;
+    padding: 5rem 3rem;
+    background-color: var(--white);
+}
+
+.form--grid {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.form--grid:last-of-type {
+    margin-bottom: 3rem;
+}
+
+.form--group {
+    width: 46%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form--group label {
+    margin-bottom: 0.5rem;
+}
+
+.form--group select,
+.form--group input[type='text'] {
+    background-color: var(--bgGray);
+    border: none;
+    padding: 1rem;
+}
 
 /* -------------------------------
     Footer
