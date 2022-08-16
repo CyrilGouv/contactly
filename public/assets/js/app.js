@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if ( alertMsg ) {
         setTimeout(() => {
             alertMsg.style.display = 'none'
+            alertMsg.remove()
         }, 3500)
     }
 })

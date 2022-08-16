@@ -12,7 +12,7 @@ ob_start();
         <div class="alert--message <?= $_SESSION['alert_msg']['type'] ?>">
             <?= $_SESSION['alert_msg']['text'] ?>
         </div>
-    <?php endif; ?>
+    <?php session_destroy(); $_SESSION = []; endif; ?>
 
     <div class="homepage__contact">
         <?php if ( count( $contacts ) > 0 ) : ?>
