@@ -1,5 +1,13 @@
 <?php
 ob_start();
+
+require_once( 'models/Contact.php' );
+$contact1 = new Contact( 1, 'Marco', 'Triglio', 'Bordeaux, FR', '06 42 42 42 42', 'Business', 'marco-triglio.jpg' );
+$contact2 = new Contact( 1, 'Anna', 'Liu', 'Paris, FR', '06 23 23 22 22', 'Friends', 'anna-liu.jpg' );
+$contact3 = new Contact( 1, 'Johnny', 'Stein', 'Paris, FR', '06 42 24 42 42', 'Business', 'johnny-stein.jpg' );
+$contact4 = new Contact( 1, 'Sarah', 'Pacco', 'Toulouse, FR', '06 12 13 14 15', 'Family', 'sarah-pacco.jpg' );
+
+$contactArr = [$contact1, $contact2, $contact3, $contact4];
 ?>
 
 <section class="homepage">
@@ -9,89 +17,37 @@ ob_start();
     </div>
 
     <div class="homepage__contact">
-        <div class="contact__card">
-            <div class="contact__card__profile">
-                <div class="card__profile__img">
-                    <img src="public/assets/images/contacts/marco-triglio.jpg" alt="Photo profile de contact">
+        <?php if ( count( $contactArr ) > 0 ) : ?>
+            <?php foreach( $contactArr as $contact ) : ?>
+                <div class="contact__card <?= strtolower( $contact->getType() ) ?>">
+                    <div class="contact__card__profile">
+                        <div class="card__profile__img">
+                            <img src="public/assets/images/contacts/<?= $contact->getPhoto() ?>" alt="Photo profile de contact <?= $contact->getName() ?>">
+                        </div>
+                        <div class="card__profile__title">
+                            <h2><?= $contact->getName() ?></h2>
+                            <p>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span><?= $contact->getLocation() ?></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact__profile__infos">
+                        <div class="profile__infos__phone">
+                            <i class="fa-solid fa-phone"></i>
+                            <span><?= $contact->getPhone() ?></span>
+                        </div>
+                        <div class="profile__infos__type">
+                            <span><?= $contact->getType() ?></span>
+                        </div>
+                    </div>
+                    <div class="contact__profile__actions">
+                        <a href="" class="contact--edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="" class="contact--remove"><i class="fa-solid fa-trash"></i></a>
+                    </div>
                 </div>
-                <div class="card__profile__title">
-                    <h2>Marco Triglio</h2>
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Bordeaux, FR</span>
-                    </p>
-                </div>
-            </div>
-            <div class="contact__profile__infos">
-                <div class="profile__infos__phone">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>06 42 42 42 42</span>
-                </div>
-                <div class="profile__infos__type">
-                    <span>Business</span>
-                </div>
-            </div>
-            <div class="contact__profile__actions">
-                <a href="" class="contact--edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="" class="contact--remove"><i class="fa-solid fa-trash"></i></a>
-            </div>
-        </div>
-
-        <div class="contact__card">
-            <div class="contact__card__profile">
-                <div class="card__profile__img">
-                    <img src="public/assets/images/contacts/marco-triglio.jpg" alt="Photo profile de contact">
-                </div>
-                <div class="card__profile__title">
-                    <h2>Marco Triglio</h2>
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Bordeaux, FR</span>
-                    </p>
-                </div>
-            </div>
-            <div class="contact__profile__infos">
-                <div class="profile__infos__phone">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>06 42 42 42 42</span>
-                </div>
-                <div class="profile__infos__type">
-                    <span>Business</span>
-                </div>
-            </div>
-            <div class="contact__profile__actions">
-                <a href="" class="contact--edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="" class="contact--remove"><i class="fa-solid fa-trash"></i></a>
-            </div>
-        </div>
-
-        <div class="contact__card">
-            <div class="contact__card__profile">
-                <div class="card__profile__img">
-                    <img src="public/assets/images/contacts/marco-triglio.jpg" alt="Photo profile de contact">
-                </div>
-                <div class="card__profile__title">
-                    <h2>Marco Triglio</h2>
-                    <p>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Bordeaux, FR</span>
-                    </p>
-                </div>
-            </div>
-            <div class="contact__profile__infos">
-                <div class="profile__infos__phone">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>06 42 42 42 42</span>
-                </div>
-                <div class="profile__infos__type">
-                    <span>Business</span>
-                </div>
-            </div>
-            <div class="contact__profile__actions">
-                <a href="" class="contact--edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                <a href="" class="contact--remove"><i class="fa-solid fa-trash"></i></a>
-            </div>
-        </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </section>
 

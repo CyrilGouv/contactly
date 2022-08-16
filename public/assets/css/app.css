@@ -14,6 +14,7 @@
     --white: #FFFFFF;
     --yellow: #F5A725;
     --gray: #D0D5DE;
+    --blue: #ADE2EF;
 }
 
 html, body {
@@ -58,7 +59,6 @@ h1 {
     margin: 0 auto;
     max-width: 1490px;
 }
-
 
 
 /* -------------------------------
@@ -160,8 +160,17 @@ h1 {
     align-items: center;
     padding: 2rem 3rem;
     background-color: var(--white);
-    border-left: 8px solid var(--violet);
     margin-bottom: 2rem;
+}
+
+.contact__card.business {
+    border-left: 8px solid var(--violet);
+}
+.contact__card.family {
+    border-left: 8px solid var(--blue);
+}
+.contact__card.friends {
+    border-left: 8px solid var(--yellow);
 }
 
 .card__profile__img {
@@ -228,7 +237,16 @@ h1 {
 .profile__infos__type {
     font-size: 1rem;
     font-weight: 700;
+}
+
+.contact__card.business .profile__infos__type  {
     color: var(--violet);
+}
+.contact__card.family .profile__infos__type  {
+    color: var(--blue);
+}
+.contact__card.friends .profile__infos__type  {
+    color: var(--yellow);
 }
 
 .contact__profile__actions {
