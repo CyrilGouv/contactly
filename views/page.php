@@ -39,5 +39,6 @@
         </div>
     </footer>
 
+    <script src="<?= SITE_URL ?>public/assets/js/app.js"></script>
 </body>
 </html>

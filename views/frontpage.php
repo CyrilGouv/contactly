@@ -8,6 +8,12 @@ ob_start();
         <a href="<?= SITE_URL ?>contact/add" class="add--project"><i class="fa-solid fa-plus"></i></a>
     </div>
 
+    <?php if ( !empty( $_SESSION['alert_msg'] ) ) : ?>
+        <div class="alert--message <?= $_SESSION['alert_msg']['type'] ?>">
+            <?= $_SESSION['alert_msg']['text'] ?>
+        </div>
+    <?php endif; ?>
+
     <div class="homepage__contact">
         <?php if ( count( $contacts ) > 0 ) : ?>
             <?php foreach( $contacts as $contact ) : ?>

@@ -34,6 +34,11 @@ class ContactController {
 
         $this->contactManager->addContactDB( $firstName, $lastName, $location, $phone, $type, $avatar );
 
+        $_SESSION['alert_msg'] = [
+            'type' => 'success',
+            'text' => "We are successfuly added your new contact",
+        ];
+
         header('Location: ' . SITE_URL);
     }
 
@@ -62,6 +67,11 @@ class ContactController {
 
         $this->contactManager->editContactDB( $id, $firstName, $lastName, $location, $phone, $type, $newImageToAdd );
 
+        $_SESSION['alert_msg'] = [
+            'type' => 'success',
+            'text' => "Your contact is edited!",
+        ];
+
         header('Location: ' . SITE_URL);
     }
 
@@ -71,6 +81,11 @@ class ContactController {
         unlink( 'public/assets/images/contacts/' . $photo );
 
         $this->contactManager->removeContactDB( $id );
+
+        $_SESSION['alert_msg'] = [
+            'type' => 'success',
+            'text' => "Your contact is removed!",
+        ];
 
         header('Location: ' . SITE_URL);
     }

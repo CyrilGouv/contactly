@@ -15,6 +15,7 @@
     --yellow: #F5A725;
     --gray: #D0D5DE;
     --blue: #ADE2EF;
+    --green: #65c6bb;
 }
 
 html, body {
@@ -361,6 +362,23 @@ h1 {
 .form__photo label {
     margin-top: 1rem;
 }
+
+
+/* -------------------------------
+    Alert Message
+---------------------------------*/
+.alert--message {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--bgGray);
+    padding: 1.25rem;
+}
+
+.alert--message.success {
+    background-color: var(--green);
+}
+
 
 /* -------------------------------
     Footer
