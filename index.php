@@ -1,18 +1,10 @@
 <?php
 ob_start();
 
-require_once( 'models/Contact.php' );
-$contact1 = new Contact( 1, 'Marco', 'Triglio', 'Bordeaux, FR', '06 42 42 42 42', 'Business', 'marco-triglio.jpg' );
-$contact2 = new Contact( 1, 'Anna', 'Liu', 'Paris, FR', '06 23 23 22 22', 'Friends', 'anna-liu.jpg' );
-$contact3 = new Contact( 1, 'Johnny', 'Stein', 'Paris, FR', '06 42 24 42 42', 'Business', 'johnny-stein.jpg' );
-$contact4 = new Contact( 1, 'Sarah', 'Pacco', 'Toulouse, FR', '06 12 13 14 15', 'Family', 'sarah-pacco.jpg' );
-
 require_once( 'models/ContactManager.php' );
 $contactManager = new ContactManager;
-$contactManager->addContact( $contact1 );
-$contactManager->addContact( $contact2 );
-$contactManager->addContact( $contact3 );
-$contactManager->addContact( $contact4 );
+$contactManager->loadContacts();
+
 ?>
 
 <section class="homepage">
@@ -25,7 +17,7 @@ $contactManager->addContact( $contact4 );
         <?php $contacts = $contactManager->getContacts(); ?>
         <?php if ( count( $contacts ) > 0 ) : ?>
             <?php foreach( $contacts as $contact ) : ?>
-                <div class="contact__card <?= strtolower( $contact->getType() ) ?>">
+                <div id="contact-<?= $contact->getId() ?>" class="contact__card <?= strtolower( $contact->getType() ) ?>">
                     <div class="contact__card__profile">
                         <div class="card__profile__img">
                             <img src="public/assets/images/contacts/<?= $contact->getPhoto() ?>" alt="Photo profile de contact <?= $contact->getName() ?>">
