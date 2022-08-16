@@ -55,6 +55,28 @@ class ContactManager extends Database {
         }
     }
 
+    public function editContactDB( $id, $firstName, $lastName, $location, $phone, $type, $photo ) {
+        $req = $this->getDB()->prepare( 'UPDATE contacts SET firstName = :firstName, lastName = :lastName, location = :location, phone = :phone, type = :type, photo = :photo WHERE id = :id' );
+        $req->bindValue( ':firstName', $firstName, PDO::PARAM_STR );
+        $req->bindValue( ':lastName', $lastName, PDO::PARAM_STR );
+        $req->bindValue( ':location', $location, PDO::PARAM_STR );
+        $req->bindValue( ':phone', $phone, PDO::PARAM_STR );
+        $req->bindValue( ':type', $type, PDO::PARAM_STR );
+        $req->bindValue( ':photo', $photo, PDO::PARAM_STR );
+        $req->bindValue( ':id', $id, PDO::PARAM_INT );
+        $res = $req->execute();
+        $req->closeCursor();
+
+        if ( $res > 0 ) {
+            $this->getContactById( $id )->setFirstName( $firstName );
+            $this->getContactById( $id )->setLastName( $lastName );
+            $this->getContactById( $id )->setLocation( $location );
+            $this->getContactById( $id )->setPhone( $phone );
+            $this->getContactById( $id )->setType( $type );
+            $this->getContactById( $id )->setPhoto( $photo );
+        }
+    }
+
     public function removeContactDB( $id ) {
         $req = $this->getDB()->prepare( 'DELETE FROM contacts WHERE id = :id' );
         $req->bindValue( ':id', $id, PDO::PARAM_INT );

@@ -37,6 +37,34 @@ class ContactController {
         header('Location: ' . SITE_URL);
     }
 
+    public function editContact( $id ) {
+        $contact = $this->contactManager->getContactById( $id );
+        require( 'views/contacts/edit.php' );
+    }
+
+    public function editValidation() {
+        $id = htmlspecialchars( $_POST['contactId'] );
+        $firstName = htmlspecialchars( $_POST['firstName'] );
+        $lastName = htmlspecialchars( $_POST['lastName'] );
+        $location = htmlspecialchars( $_POST['location'] );
+        $phone = htmlspecialchars( $_POST['phone'] );
+        $type = htmlspecialchars( $_POST['type'] );
+        $photo = $_FILES['photo'];
+        $currentPhoto = $this->contactManager->getContactById( $id )->getPhoto();
+
+        if ( $photo['size'] > 0 ) {
+            unlink( 'public/assets/images/contacts/' . $currentPhoto );
+            $pathToImage = 'public/assets/images/contacts/';
+            $newImageToAdd = $this->addImage( $photo, $pathToImage );
+        } else {
+            $newImageToAdd = $currentPhoto;
+        }
+
+        $this->contactManager->editContactDB( $id, $firstName, $lastName, $location, $phone, $type, $newImageToAdd );
+
+        header('Location: ' . SITE_URL);
+    }
+
     public function removeContact( $id ) {
         // Remove photo
         $photo = $this->contactManager->getContactById( $id )->getPhoto();

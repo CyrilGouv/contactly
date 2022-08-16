@@ -24,7 +24,10 @@ try {
                     $contactController->addValidation();
                     break;
                 } else if ( $url[1] === 'edit' ) {
-                    echo 'edit';
+                    $contactController->editContact( $url[2] );
+                    break;
+                } else if ( $url[1] === 'edit-validation' ) {
+                    $contactController->editValidation();
                     break;
                 } else if ( $url[1] === 'remove' ) {
                     $contactController->removeContact( $url[2] );
