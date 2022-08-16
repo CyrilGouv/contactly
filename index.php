@@ -27,7 +27,7 @@ try {
                     echo 'edit';
                     break;
                 } else if ( $url[1] === 'remove' ) {
-                    echo 'remove';
+                    $contactController->removeContact( $url[2] );
                     break;
                 } else {
                     throw new Exception("La page n'existe pas");

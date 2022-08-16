@@ -262,12 +262,27 @@ h1 {
 .contact__profile__actions {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .contact__profile__actions a {
     display: inline-block;
     font-size: 1.125rem;
     color: var(--black);
+}
+
+.contact__profile__actions form {
+    padding: 0;
+    margin: 0;
+}
+
+.contact--remove {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.125rem;
+    color: var(--black);
+    padding: 0;
 }
 
 .contact__profile__actions a:first-of-type {

@@ -28,6 +28,16 @@ class ContactManager extends Database {
         }
     }
 
+    public function getContactById( $id ) {
+        foreach( $this->contacts as $contact ) {
+            if ( $contact->getId() === $id ) {
+                return $contact;
+            }
+        }
+
+        throw new Exception("No contact found for this ID");
+    }
+
     public function addContactDB( $firstName, $lastName, $location, $phone, $type, $avatar ) {
         $req = $this->getDB()->prepare( 'INSERT INTO contacts( firstName, lastName, location, phone, type, photo ) VALUES( :firstName, :lastName, :location, :phone, :type, :photo )' );
         $req->bindValue( ':firstName', $firstName, PDO::PARAM_STR );
@@ -42,6 +52,18 @@ class ContactManager extends Database {
         if ( $res > 0 ) {
             $contact = new Contact( $this->getDB()->lastInsertId(), $firstName, $lastName, $location, $phone, $type, $avatar );
             $this->addContact( $contact );
+        }
+    }
+
+    public function removeContactDB( $id ) {
+        $req = $this->getDB()->prepare( 'DELETE FROM contacts WHERE id = :id' );
+        $req->bindValue( ':id', $id, PDO::PARAM_INT );
+        $res = $req->execute();
+        $req->closeCursor();
+
+        if ( $res > 0 ) {
+            $contact = $this->getContactById( $id );
+            unset( $contact );
         }
     }
 

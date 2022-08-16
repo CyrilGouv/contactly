@@ -37,6 +37,16 @@ class ContactController {
         header('Location: ' . SITE_URL);
     }
 
+    public function removeContact( $id ) {
+        // Remove photo
+        $photo = $this->contactManager->getContactById( $id )->getPhoto();
+        unlink( 'public/assets/images/contacts/' . $photo );
+
+        $this->contactManager->removeContactDB( $id );
+
+        header('Location: ' . SITE_URL);
+    }
+
     private function addImage( $file, $dir ) {
         if ( !isset( $file['name'] ) || empty( $file['name'] ) ) {
             throw new Exception("You must add an image");

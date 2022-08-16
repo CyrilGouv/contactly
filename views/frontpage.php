@@ -35,7 +35,9 @@ ob_start();
                     </div>
                     <div class="contact__profile__actions">
                         <a href="<?= SITE_URL ?>contact/edit/<?= $contact->getId() ?>" class="contact--edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="<?= SITE_URL ?>contact/remove/<?= $contact->getId() ?>" class="contact--remove"><i class="fa-solid fa-trash"></i></a>
+                        <form action="<?= SITE_URL ?>contact/remove/<?= $contact->getId() ?>" method="POST" onsubmit="return confirm( 'Do you really want to remove this contact?' )">
+                            <button type="submit" class="contact--remove"><i class="fa-solid fa-trash"></i></button>
+                        </form>
                     </div>
                 </div>
             <?php endforeach; ?>
