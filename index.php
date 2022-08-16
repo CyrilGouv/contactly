@@ -7,7 +7,12 @@ $contact2 = new Contact( 1, 'Anna', 'Liu', 'Paris, FR', '06 23 23 22 22', 'Frien
 $contact3 = new Contact( 1, 'Johnny', 'Stein', 'Paris, FR', '06 42 24 42 42', 'Business', 'johnny-stein.jpg' );
 $contact4 = new Contact( 1, 'Sarah', 'Pacco', 'Toulouse, FR', '06 12 13 14 15', 'Family', 'sarah-pacco.jpg' );
 
-$contactArr = [$contact1, $contact2, $contact3, $contact4];
+require_once( 'models/ContactManager.php' );
+$contactManager = new ContactManager;
+$contactManager->addContact( $contact1 );
+$contactManager->addContact( $contact2 );
+$contactManager->addContact( $contact3 );
+$contactManager->addContact( $contact4 );
 ?>
 
 <section class="homepage">
@@ -17,8 +22,9 @@ $contactArr = [$contact1, $contact2, $contact3, $contact4];
     </div>
 
     <div class="homepage__contact">
-        <?php if ( count( $contactArr ) > 0 ) : ?>
-            <?php foreach( $contactArr as $contact ) : ?>
+        <?php $contacts = $contactManager->getContacts(); ?>
+        <?php if ( count( $contacts ) > 0 ) : ?>
+            <?php foreach( $contacts as $contact ) : ?>
                 <div class="contact__card <?= strtolower( $contact->getType() ) ?>">
                     <div class="contact__card__profile">
                         <div class="card__profile__img">
